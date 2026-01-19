@@ -15,6 +15,7 @@
   >
     <CustomSidebar customSideClass="absolute h-[98vh]" />
     <div class=" ml-[270px] w-full rounded-3xl bg-gray-300 dark:bg-gray-700">
+      
       <slot />
     </div>
   </div>
