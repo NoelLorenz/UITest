@@ -47,6 +47,19 @@ export default {
           800: "#991b1b",
           900: "#7f1d1d",
         },
+        gray: {
+          50:  "#f6f8fa", // light UI surfaces
+          100: "#eaeef2",
+          200: "#d0d7de",
+          300: "#afb8c1",
+          400: "#8c959f",
+          500: "#6e7781",
+          600: "#57606a",
+          700: "#424a53",
+          800: "#32383f",
+          900: "#24292f", // GitHub dark base
+        },
+
       },
       fontFamily: {
         rubik: ["Rubik", "sans-serif"], // Sample custom font. Font should be imported first in src/app.css
