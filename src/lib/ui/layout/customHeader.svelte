@@ -2,26 +2,39 @@
   import {
     Avatar,
     Button,
+    DarkMode,
     Dropdown,
     DropdownItem,
     Heading,
+    Hr,
     Navbar,
     P,
   } from "flowbite-svelte";
 </script>
 
-<Navbar fluid class="bg-transparent dark:bg-transparent">
-  <div class="flex justify-between w-full">
-    <Heading>Lorem Ipsum Dolor</Heading>
-    <Button pill>
-      <Avatar />
-      <P>User</P>
-    </Button>
-    <Dropdown>
-      <DropdownItem>test</DropdownItem>
-      <DropdownItem>test</DropdownItem>
-
-      <DropdownItem>test</DropdownItem>
-    </Dropdown>
+<Navbar
+  fluid
+  class="bg-primary-500 dark:bg-primary-700  rounded-2xl shadow-sm w-5/6 md:w-full ml-auto"
+>
+  <div class="flex justify-between w-full items-center">
+    <Heading tag="h3" class="text-center">Lorem Ipsum Dolor</Heading>
+    <div class="flex gap-8 ml-auto">
+      <DarkMode class=" hidden md:block" />
+      <Button
+        pill
+        size="xs"
+        class="px-8 hover:dark:bg-primary-500 dark:bg-primary-600 bg-primary-600 hover:bg-primary-700"
+      >
+        <div class="flex gap-2 items-center">
+          <Avatar />
+          <P class="hidden md:block" weight="semibold">User</P>
+        </div>
+      </Button>
+      <Dropdown simple>
+        <DropdownItem>test</DropdownItem>
+        <DropdownItem>test</DropdownItem>
+        <DropdownItem class="md:hidden block"><DarkMode /></DropdownItem>
+      </Dropdown>
+    </div>
   </div>
 </Navbar>
