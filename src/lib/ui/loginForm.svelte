@@ -8,7 +8,6 @@
     Avatar,
     Heading,
   } from "flowbite-svelte";
-  import { onMount } from "svelte";
   import { afterNavigate, invalidateAll } from "$app/navigation";
   //   let innerWidth: number;
   //   let isMobile = false;
