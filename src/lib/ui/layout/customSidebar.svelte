@@ -5,6 +5,7 @@
     SidebarItem,
     SidebarButton,
     uiHelpers,
+    Avatar,
   } from "flowbite-svelte";
   import {
     ChartOutline,
@@ -19,28 +20,43 @@
   let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
   const activeClass: string =
-    "flex w-full p-2 bg-primary-300 rounded-2xl items-center";
+    "flex w-full p-2 bg-primary-500  rounded-2xl items-center";
   const nonActiveClass: string =
-    "flex w-full p-2 bg-transparent rounded-2xl items-center hover:bg-primary-200";
+    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900";
 
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
     activeUrl = page.url.pathname;
   });
+
+  // let sidebarItems: {
+  //   label: string;
+  //   href: string;
+  // } = {};
 </script>
 
-<SidebarButton onclick={demoSidebarUi.toggle} class="mb-2" />
+<SidebarButton
+  onclick={demoSidebarUi.toggle}
+  class="lg:mb-2 z-50 bg-primary-600 left-8 top-10 absolute"
+/>
 <Sidebar
   {activeUrl}
   backdrop={false}
   isOpen={isDemoOpen}
   closeSidebar={closeDemoSidebar}
   params={{ x: -50, duration: 50 }}
-  class="z-50 min-h-[98vh] bg-gray-200 p-4 dark:bg-gray-700 m-2 rounded-3xl"
+  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl "
   position="absolute"
-  classes={{ nonactive: "p-2", active: "p-2", div: "bg-transparent p-0" }}
+  classes={{
+    nonactive: "p-2",
+    active: "p-2",
+    div: "bg-transparent dark:bg-gray-600 p-0 flex flex-col gap-8 items-center w-full h-full",
+  }}
 >
-  <SidebarGroup class="">
+  <SidebarGroup>
+    <Avatar size="lg" />
+  </SidebarGroup>
+  <SidebarGroup class="w-full">
     <SidebarItem
       {activeClass}
       {nonActiveClass}
@@ -56,9 +72,9 @@
     <SidebarItem
       {activeClass}
       {nonActiveClass}
-      label="Kanban"
+      label="Components"
       {spanClass}
-      href="/"
+      href="/components"
     >
       {#snippet icon()}
         <GridSolid
