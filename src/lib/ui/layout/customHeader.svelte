@@ -10,6 +10,7 @@
     Navbar,
     P,
   } from "flowbite-svelte";
+  import CustomDarkmode from "../component/customDarkmode.svelte";
 </script>
 
 <Navbar
@@ -19,11 +20,11 @@
   <div class="flex justify-between w-full items-center">
     <Heading tag="h3" class="text-center">Lorem Ipsum Dolor</Heading>
     <div class="flex gap-8 ml-auto">
-      <DarkMode class=" hidden md:block" />
+      <CustomDarkmode className=" hidden md:block" />
       <Button
         pill
         size="xs"
-        class="px-8 hover:dark:bg-primary-500 dark:bg-primary-600 bg-primary-600 hover:bg-primary-700"
+        class="lg:px-8 hover:dark:bg-primary-500 dark:bg-primary-600 bg-primary-600 hover:bg-primary-700"
       >
         <div class="flex gap-2 items-center">
           <Avatar />
@@ -33,7 +34,7 @@
       <Dropdown simple>
         <DropdownItem>test</DropdownItem>
         <DropdownItem>test</DropdownItem>
-        <DropdownItem class="md:hidden block"><DarkMode /></DropdownItem>
+        <DropdownItem class="md:hidden block"><CustomDarkmode /></DropdownItem>
       </Dropdown>
     </div>
   </div>
