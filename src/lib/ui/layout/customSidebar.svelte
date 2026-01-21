@@ -14,15 +14,18 @@
     UserSolid,
   } from "flowbite-svelte-icons";
   import { page } from "$app/state";
+  import { fa } from "svelty-picker/i18n";
+  import { scale } from "svelte/transition";
   let activeUrl = $state(page.url.pathname);
   const spanClass = "flex-1 ms-3 whitespace-nowrap";
   const demoSidebarUi = uiHelpers();
   let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
   const activeClass: string =
-    "flex w-full p-2 bg-primary-500  rounded-2xl items-center";
+    "flex w-full p-2 bg-primary-500  rounded-2xl items-center [&>span]:transition-all [&>span]:duration-500";
   const nonActiveClass: string =
-    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900";
+    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900 [&>span]:transition-all [&>span]:duration-500";
+  let onHover = $state(false);
 
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
@@ -44,23 +47,24 @@
   backdrop={false}
   isOpen={isDemoOpen}
   closeSidebar={closeDemoSidebar}
-  params={{ x: -50, duration: 50 }}
-  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl "
+  onmouseenter={() => (onHover = true)}
+  onmouseleave={() => (onHover = false)}
+  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl w-fit"
   position="absolute"
   classes={{
     nonactive: "p-2",
-    active: "p-2",
+    active: "p-2 ",
     div: "bg-transparent dark:bg-gray-600 p-0 flex flex-col gap-8 items-center w-full h-full",
   }}
 >
   <SidebarGroup>
-    <Avatar size="lg" />
+    <Avatar class="transition-all duration-500" size={!onHover ? "sm" : "lg"} />
   </SidebarGroup>
   <SidebarGroup class="w-full">
     <SidebarItem
       {activeClass}
       {nonActiveClass}
-      label="Dashboard"
+      label={!onHover ? "" : "dashboard"}
       href="/dashboard"
     >
       {#snippet icon()}
@@ -72,7 +76,7 @@
     <SidebarItem
       {activeClass}
       {nonActiveClass}
-      label="Components"
+      label={!onHover ? "" : "components"}
       {spanClass}
       href="/components"
     >
@@ -82,10 +86,12 @@
         />
       {/snippet}
       {#snippet subtext()}
-        <span
-          class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-200 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300"
-          >Pro</span
-        >
+        {#if onHover}
+          <span
+            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-200 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+            >Pro</span
+          >
+        {/if}
       {/snippet}
     </SidebarItem>
   </SidebarGroup>

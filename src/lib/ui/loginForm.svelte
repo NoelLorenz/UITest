@@ -27,7 +27,7 @@ https://svelte.dev/e/node_invalid_placement -->
 </script>
 
 <div
-  class="flex flex-col lg:items-center lg:justify-center lg:h-[90vh] h-[100vh] w-full"
+  class="flex flex-col lg:items-center lg:justify-center lg:h-[90vh] h-screen w-full"
 >
   <div
     class="flex lg:flex-row flex-col-reverse h-full lg:w-2/3 w-full lg:m-24 bg-teal-400 dark:bg-teal-600 lg:dark:bg-emerald-600 lg:bg-emerald-400 rounded-3xl lg:items-center lg:justify-center shadow-lg"
