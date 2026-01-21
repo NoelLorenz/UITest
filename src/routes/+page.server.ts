@@ -11,10 +11,10 @@ export const actions: Actions = {
 
     console.log("User Credentials:", userCreds);
 
-    // if (userCreds.user === "admin" && userCreds.password === "password") {
-    //   throw redirect(303, "/dashboard");
-    // } else {
-    //   throw redirect(303, "/");
-    // }
+    if (userCreds.user === "admin" && userCreds.password === "password") {
+      throw redirect(303, "/dashboard");
+    } else {
+      throw redirect(303, "/");
+    }
   },
 };

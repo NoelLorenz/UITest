@@ -6,6 +6,7 @@
     SidebarButton,
     uiHelpers,
     Avatar,
+    Toggle,
   } from "flowbite-svelte";
   import {
     ChartOutline,
@@ -16,26 +17,23 @@
   import { page } from "$app/state";
   import { fa } from "svelty-picker/i18n";
   import { scale } from "svelte/transition";
+  import CustomDarkmode from "../component/customDarkmode.svelte";
   let activeUrl = $state(page.url.pathname);
   const spanClass = "flex-1 ms-3 whitespace-nowrap";
   const demoSidebarUi = uiHelpers();
   let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
   const activeClass: string =
-    "flex w-full p-2 bg-primary-500  rounded-2xl items-center [&>span]:transition-all [&>span]:duration-500";
+    "flex w-full p-2 bg-primary-500  rounded-2xl items-center [&>span]:transition-all [&>span]:duration-500 [&>span]:text-center";
   const nonActiveClass: string =
-    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900 [&>span]:transition-all [&>span]:duration-500";
-  let onHover = $state(false);
+    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900 [&>span]:transition-all [&>span]:duration-500 [&>span]:text-center";
+
+  let { onHover = $bindable() }: { onHover: boolean } = $props();
 
   $effect(() => {
     isDemoOpen = demoSidebarUi.isOpen;
     activeUrl = page.url.pathname;
   });
-
-  // let sidebarItems: {
-  //   label: string;
-  //   href: string;
-  // } = {};
 </script>
 
 <SidebarButton
@@ -49,7 +47,7 @@
   closeSidebar={closeDemoSidebar}
   onmouseenter={() => (onHover = true)}
   onmouseleave={() => (onHover = false)}
-  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl w-fit"
+  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl w-fit "
   position="absolute"
   classes={{
     nonactive: "p-2",

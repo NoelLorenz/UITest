@@ -9,8 +9,12 @@
     Hr,
     Navbar,
     P,
+    Search,
   } from "flowbite-svelte";
   import CustomDarkmode from "../component/customDarkmode.svelte";
+  import LogoutSVG from "../svgIcons/logoutSVG.svelte";
+
+  const itemClass = "text-lg px-4 flex gap-2 items-center items-end";
 </script>
 
 <Navbar
@@ -19,8 +23,11 @@
 >
   <div class="flex justify-between w-full items-center">
     <Heading tag="h3" class="text-center">Lorem Ipsum Dolor</Heading>
-    <div class="flex gap-8 ml-auto">
-      <CustomDarkmode className=" hidden md:block" />
+    <Search size="lg" class="w-1/3 ml-auto">
+      <Button class="me-1">Search</Button>
+    </Search>
+    <div class="flex gap-8 ml-16">
+      <CustomDarkmode className="hidden md:block" />
       <Button
         pill
         size="xs"
@@ -32,8 +39,10 @@
         </div>
       </Button>
       <Dropdown simple>
-        <DropdownItem>test</DropdownItem>
-        <DropdownItem>test</DropdownItem>
+        <DropdownItem class={itemClass}>Profile</DropdownItem>
+        <DropdownItem href="/" class={itemClass}
+          ><LogoutSVG /> Logout</DropdownItem
+        >
         <DropdownItem class="md:hidden block"><CustomDarkmode /></DropdownItem>
       </Dropdown>
     </div>
