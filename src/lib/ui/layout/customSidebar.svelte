@@ -7,11 +7,13 @@
     uiHelpers,
     Avatar,
     Toggle,
+    Heading,
   } from "flowbite-svelte";
   import {
     ChartOutline,
     GridSolid,
     MailBoxSolid,
+    TableColumnSolid,
     UserSolid,
   } from "flowbite-svelte-icons";
   import { page } from "$app/state";
@@ -24,9 +26,9 @@
   let isDemoOpen = $state(false);
   const closeDemoSidebar = demoSidebarUi.close;
   const activeClass: string =
-    "flex w-full p-2 bg-primary-500  rounded-2xl items-center [&>span]:transition-all [&>span]:duration-500 [&>span]:text-center";
+    "flex w-full p-2 bg-primary-500  rounded-2xl items-center [&>span]:transition-all ";
   const nonActiveClass: string =
-    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900 [&>span]:transition-all [&>span]:duration-500 [&>span]:text-center";
+    "flex w-full p-2 bg-transparent dark:text-gray-100 rounded-2xl items-center hover:bg-primary-400 hover:text-gray-900 [&>span]:transition-all ";
 
   let { onHover = $bindable() }: { onHover: boolean } = $props();
 
@@ -47,16 +49,19 @@
   closeSidebar={closeDemoSidebar}
   onmouseenter={() => (onHover = true)}
   onmouseleave={() => (onHover = false)}
-  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl w-fit "
-  position="absolute"
+  class="z-50 min-h-[98vh] bg-gray-100 p-4 dark:bg-gray-600 m-2 rounded-3xl w-fit"
+  position="fixed"
   classes={{
     nonactive: "p-2",
     active: "p-2 ",
     div: "bg-transparent dark:bg-gray-600 p-0 flex flex-col gap-8 items-center w-full h-full",
   }}
 >
-  <SidebarGroup>
+  <SidebarGroup class="flex flex-col items-center">
     <Avatar class="transition-all duration-500" size={!onHover ? "sm" : "lg"} />
+    {#if onHover}
+      <Heading tag="h3" class="text-center">Lorem Ipsum Dolor</Heading>
+    {/if}
   </SidebarGroup>
   <SidebarGroup class="w-full">
     <SidebarItem
@@ -74,12 +79,33 @@
     <SidebarItem
       {activeClass}
       {nonActiveClass}
-      label={!onHover ? "" : "components"}
+      label={!onHover ? "" : "buttons"}
       {spanClass}
-      href="/components"
+      href="/buttons"
     >
       {#snippet icon()}
         <GridSolid
+          class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+        />
+      {/snippet}
+      {#snippet subtext()}
+        {#if onHover}
+          <span
+            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-200 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+            >Pro</span
+          >
+        {/if}
+      {/snippet}
+    </SidebarItem>
+    <SidebarItem
+      {activeClass}
+      {nonActiveClass}
+      label={!onHover ? "" : "table"}
+      {spanClass}
+      href="/table"
+    >
+      {#snippet icon()}
+        <TableColumnSolid
           class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
         />
       {/snippet}
