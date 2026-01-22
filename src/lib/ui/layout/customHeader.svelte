@@ -22,8 +22,7 @@
   class="bg-primary-500 dark:bg-primary-700  rounded-2xl shadow-sm w-5/6 md:w-full ml-auto"
 >
   <div class="flex justify-between w-full items-center">
-    <Heading tag="h3" class="text-center">Lorem Ipsum Dolor</Heading>
-    <Search size="lg" class="w-1/3 ml-auto">
+    <Search size="lg" class="w-1/3">
       <Button class="me-1">Search</Button>
     </Search>
     <div class="flex gap-8 ml-16">
